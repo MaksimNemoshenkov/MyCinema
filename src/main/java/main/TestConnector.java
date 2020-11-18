@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class TestConnector {
 
     static final String DB_URL = "jdbc:postgresql://localhost/john";
-    static final String USER = "myuser";
-    static final String PASS = "123";
+    static final String USER = "john";
+    static final String PASS = "1234";
 
     public static void main(String[] args) {
         System.out.println("Testing connection to PostgreSQL JDBC");
