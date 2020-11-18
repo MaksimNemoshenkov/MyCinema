@@ -31,6 +31,7 @@ public class Seance {
         tickets = new ArrayList<>();
         this.date = date;
     }
+
      public void addTicket(Ticket ticket){
         tickets.add(ticket);
      }

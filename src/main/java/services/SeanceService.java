@@ -27,7 +27,7 @@ public class SeanceService {
         seanceDAO.update(seance);
     }
 
-    public List<Seance> findAllUsers() {
+    public List<Seance> findAllSeance() {
         return seanceDAO.findAll();
     }
 }
