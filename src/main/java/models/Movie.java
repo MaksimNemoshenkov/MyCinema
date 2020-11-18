@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,13 +11,18 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
-
     private int rating;
-
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seance> seances;
+
+    public Movie(){}
+
+    public Movie(String name, int rating){
+        this.name = name;
+        this.rating = rating;
+        seances = new ArrayList<>();
+    }
 
     public int getId() {
         return id;
