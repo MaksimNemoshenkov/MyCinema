@@ -1,48 +1,31 @@
 package models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@NoArgsConstructor
+@ToString(of="name")
 @Table(name = "halls")
 public class Hall {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Setter
     private String name;
+    @Setter
     @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seance> seances;
-
-    public Hall(){}
 
     public Hall(String name){
         this.name = name;
         seances = new ArrayList<>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Seance> getSeances() {
-        return seances;
-    }
-
-    public void setSeances(List<Seance> seances) {
-        this.seances = seances;
-    }
-    @Override
-    public String toString (){
-        return "Name hall: " + name;
     }
 }

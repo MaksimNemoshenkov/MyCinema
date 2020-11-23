@@ -1,59 +1,35 @@
 package models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@ToString(of={"name", "rating"})
 @Table(name = "movies")
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Setter
     private String name;
+    @Setter
     private int rating;
+    @Setter
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seance> seances;
-
-    public Movie(){}
 
     public Movie(String name, int rating){
         this.name = name;
         this.rating = rating;
         seances = new ArrayList<>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public List<Seance> getSeances() {
-        return seances;
-    }
-
-    public void setSeances(List<Seance> seances) {
-        this.seances = seances;
-    }
-    @Override
-    public String toString(){
-     return "Film name: " + name +
-     "Rating " + rating;
     }
 }

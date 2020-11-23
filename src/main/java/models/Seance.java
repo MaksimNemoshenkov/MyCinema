@@ -1,10 +1,16 @@
 package models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Getter
 @Table (name = "seances")
 public class Seance {
 
@@ -12,20 +18,22 @@ public class Seance {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hall_id")
     private Hall hall;
 
+    @Setter
     private String date;
 
+    @Setter
     @OneToMany(mappedBy = "seance", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
-
-    public Seance(){}
 
     public Seance (String date){
         tickets = new ArrayList<>();
@@ -40,41 +48,6 @@ public class Seance {
         tickets.remove(ticket);
      }
 
-    public int getId() {
-        return id;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
-    public Hall getHall() {
-        return hall;
-    }
-
-    public void setHall(Hall hall) {
-        this.hall = hall;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
     @Override
     public String toString(){
         return "Hall: " + hall.getName() +
