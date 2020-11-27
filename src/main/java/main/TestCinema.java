@@ -18,8 +18,10 @@ public class TestCinema {
 
         Movie movie = new Movie("Limitless" , 7);
         movieService.saveMovie(movie);
+
         Hall hall = new Hall("Green");
         hallService.saveHall(hall);
+
         Seance seance = new Seance("21-10-2021-18:00");
         seance.setHall(hall);
         seance.setMovie(movie);
