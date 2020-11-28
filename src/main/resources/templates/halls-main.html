@@ -12,7 +12,7 @@
     <h1>Halls of cinema</h1>
     <div th:each="el : ${halls}" class="alert alert-into mt-5">
         <h3 th:text="${el.name}"/>
-        <a th:href="'/halls/' + ${el.id}">about halls</a>
+        <a th:href="'/halls/' + ${el.id}" class="btn btn-warning">detail</a>
     </div>
 </div>
 <div th:insert="blocks/footer.html :: footer"></div>
