@@ -1,21 +1,28 @@
 package com.Cinema.controllers;
 
+import com.Cinema.models.Hall;
 import com.Cinema.models.Movie;
+import com.Cinema.repo.MovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.Cinema.services.MovieService;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 public class MovieController {
 
-    MovieService movieService = new MovieService();
+    @Autowired
+    private MovieRepository movieRepository;
 
     @GetMapping("/movie")
     public String movie(Model model){
-        Iterable<Movie> movies = movieService.findAllMovie();
+        Iterable<Movie> movies = movieRepository.findAll();
         model.addAttribute("movies", movies);
         return"movie-main";
     }
@@ -23,12 +30,41 @@ public class MovieController {
     public String movieAdd(Model model){
         return"movie-add";
     }
+
     @PostMapping("/movie/add")
     public String moviePostAdd(@RequestParam String title, @RequestParam int rating, Model model){
         Movie movie = new Movie(title, rating);
-        movieService.saveMovie(movie);
+        movieRepository.save(movie);
         return"redirect:/movie";
     }
-
-
+    @GetMapping("/movie/{id}")
+    public String movieDetails(@PathVariable(value = "id") int id, Model model){
+        if(!movieRepository.existsById(id)){
+            return "redirect:/movie";
+        }
+        model.addAttribute("movie", movieRepository.findById(id).orElseThrow());
+        return"movie-detail";
+    }
+    @GetMapping("/movie/{id}/edit")
+    public String movieEdit(@PathVariable(value = "id") int id, Model model){
+        if(!movieRepository.existsById(id)){
+            return "redirect:/movie";
+        }
+        model.addAttribute("movie", movieRepository.findById(id).orElseThrow());
+        return"movie-edit";
+    }
+    @PostMapping("/movie/{id}/edit")
+    public String cinemaMovieUpdate(@PathVariable(value = "id") int id, @RequestParam String name, @RequestParam int rating, Model model){
+        Movie movie = movieRepository.findById(id).orElseThrow();
+        movie.setName(name);
+        movie.setRating(rating);
+        movieRepository.save(movie);
+        return"redirect:/movie";
+    }
+    @PostMapping("/movie/{id}/remove")
+    public String cinemaMovieDelete(@PathVariable(value = "id") int id, Model model){
+        Movie movie = movieRepository.findById(id).orElseThrow();
+        movieRepository.delete(movie);
+        return"redirect:/movie";
+    }
 }

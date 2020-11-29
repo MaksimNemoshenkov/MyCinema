@@ -20,7 +20,7 @@ public class HallsController {
     @Autowired
     private HallRepository hallRepository;
 
-    HallService hallService = new HallService();
+  //  HallService hallService = new HallService();
 
     @GetMapping("/halls")
     public String halls(Model model){
@@ -32,7 +32,7 @@ public class HallsController {
 
     @GetMapping("/halls/add")
     public String hallsAdd(Model model){
-        return "halls-add";
+        return "hall-add";
     }
 
     @PostMapping("/halls/add")
@@ -58,17 +58,21 @@ public class HallsController {
         if(!hallRepository.existsById(id)){
             return "redirect:/halls";
         }
-        Optional<Hall> hall = hallRepository.findById(id);
-        ArrayList<Hall> res =  new ArrayList<>();
-        hall.ifPresent(res::add);
-        model.addAttribute("hall", res);
+        model.addAttribute("hall", hallRepository.findById(id).orElseThrow());
         return"hall-edit";
     }
     @PostMapping("/halls/{id}/edit")
-    public String cinemaHallUpdate(@PathVariable(value = "id") int id, @RequestParam String title, Model model){
+    public String cinemaHallUpdate(@PathVariable(value = "id") int id, @RequestParam String name, Model model){
         Hall hall = hallRepository.findById(id).orElseThrow();
-        hall.setName(title);
+        hall.setName(name);
         hallRepository.save(hall);
+        return"redirect:/halls";
+    }
+
+    @PostMapping("/halls/{id}/remove")
+    public String cinemaHallDelete(@PathVariable(value = "id") int id, Model model){
+        Hall hall = hallRepository.findById(id).orElseThrow();
+        hallRepository.delete(hall);
         return"redirect:/halls";
     }
 }

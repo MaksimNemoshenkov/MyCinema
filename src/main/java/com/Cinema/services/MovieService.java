@@ -3,6 +3,7 @@ package com.Cinema.services;
 import com.Cinema.dao.MovieDAO;
 import com.Cinema.dao.MovieDAOImpl;
 import com.Cinema.models.Movie;
+import com.Cinema.repo.MovieRepository;
 
 import java.util.List;
 

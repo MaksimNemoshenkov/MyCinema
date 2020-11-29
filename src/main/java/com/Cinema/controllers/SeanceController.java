@@ -3,19 +3,14 @@ package com.Cinema.controllers;
 import com.Cinema.models.Hall;
 import com.Cinema.models.Movie;
 import com.Cinema.models.Seance;
-import com.Cinema.repo.HallRepository;
-import com.Cinema.repo.MovieRepository;
 import com.Cinema.repo.SeanceRepository;
 import com.Cinema.utils.HibernateSessionFactoryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.Cinema.services.SeanceService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Optional;
 
 @Controller
 public class SeanceController {

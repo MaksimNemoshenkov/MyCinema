@@ -18,7 +18,7 @@ public class MainController {
     @GetMapping("/about")
     public String about(Model model) {
         model.addAttribute("title", "Creator by Maxim");
-        return "home";
+        return "author";
     }
 
 }
