@@ -3,6 +3,8 @@ package com.Cinema.controllers;
 import com.Cinema.models.Hall;
 import com.Cinema.models.Movie;
 import com.Cinema.models.Seance;
+import com.Cinema.repo.HallRepository;
+import com.Cinema.repo.MovieRepository;
 import com.Cinema.repo.SeanceRepository;
 import com.Cinema.utils.HibernateSessionFactoryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,10 @@ public class SeanceController {
 
     @Autowired
     private SeanceRepository seanceRepository;
-/*    @Autowired
+    @Autowired
     private MovieRepository movieRepository;
     @Autowired
-    private HallRepository hallRepository;*/
+    private HallRepository hallRepository;
 //    private SeanceService seanceService = new SeanceService();
 
     @GetMapping("/seance")
@@ -36,13 +38,13 @@ public class SeanceController {
     }
 
     @PostMapping("/seance/add")
-    public String seancePostAdd (@RequestParam String data, @RequestParam int movieId, @RequestParam int hallId, Model model){
+    public String seancePostAdd (@RequestParam String data, @RequestParam int movie_id, @RequestParam int hall_id, Model model){
         Seance seance = new Seance(data);
-        Hall hall = HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Hall.class, hallId);
+        Hall hall = hallRepository.findById(hall_id).orElseThrow();
         seance.setHall(hall);
-        Movie movie = HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Movie.class, movieId);
+        Movie movie = movieRepository.findById(movie_id).orElseThrow();
         seance.setMovie(movie);
         seanceRepository.save(seance);
-        return "redirect/seance";
+        return "redirect:/seance";
     }
 }

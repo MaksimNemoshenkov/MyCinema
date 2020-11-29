@@ -2,6 +2,7 @@ package com.Cinema.controllers;
 
 import com.Cinema.models.Seance;
 import com.Cinema.models.Ticket;
+import com.Cinema.repo.SeanceRepository;
 import com.Cinema.repo.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ public class TicketController {
 
     @Autowired
     private TicketRepository ticketRepository;
+    @Autowired
+    private SeanceRepository seanceRepository;
 
     @GetMapping("/tickets")
     public String tickets(Model model){
-        model.addAttribute(ticketRepository.findAll());
-        return "tickets-main";
+        model.addAttribute("ticket", ticketRepository.findAll());
+        return "ticket-main";
     }
     @GetMapping("/ticket/add")
     public String ticketAdd(Model model){
@@ -28,8 +31,8 @@ public class TicketController {
     }
 
     @PostMapping("/ticket/add")
-    public String cinemaTicketAdd(@RequestParam int place, Model model){
-        Seance seance = new Seance();
+    public String cinemaTicketAdd(@RequestParam int place, @RequestParam int seance_id, Model model){
+        Seance seance = seanceRepository.findById(seance_id).orElseThrow();
         Ticket ticket = new Ticket(place);
         ticket.setSeance(seance);
         ticketRepository.save(ticket);

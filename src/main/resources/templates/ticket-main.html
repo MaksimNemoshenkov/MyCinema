@@ -8,15 +8,16 @@
 </head>
 <body>
 <header th:insert="blocks/header.html :: header"></header>
-<div class="container mt-5 mb-5">
-    <h1>Add seance</h1>
-        <form method="post">
-        <input type="text" name="data" placeholder="Please enter a date of seance" class="form-control"><br>
-        <input type="number" name="movie_id" placeholder="Please enter a movie id" class="form-control"><br>
-        <input type="number" name="hall_id" placeholder="Please enter a hall id" class="form-control"><br>
-        <button type="submit" class="btn btn-success">Add Seance</button>
-    </form>
+
+<div class="container mt-5">
+    <h1>Tickets</h1>
+    <div th:each="el : ${ticket}" class="alert alert-into mt-5">
+        <h3 th:text="${el.seance}"/>
+        <h3 th:number="${el.place}"/>
+        <a th:href="'/tickets/' + ${el.id}" class="btn btn-warning">detail</a>
+    </div>
 </div>
+
 <div th:insert="blocks/footer.html :: footer"></div>
 </body>
 </html>
