@@ -1,4 +1,4 @@
-package com.Cinema.models;
+package com.cinema.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,22 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
 @NoArgsConstructor
-@ToString(of="name")
-@Table(name = "halls")
-public class Hall {
+@Getter
+@ToString(of={"name", "rating"})
+@Table(name = "movies")
+public class Movie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Setter
     private String name;
     @Setter
-    @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL, orphanRemoval = true)
+    private int rating;
+    @Setter
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seance> seances;
 
-    public Hall(String name){
+    public Movie(String name, int rating){
         this.name = name;
+        this.rating = rating;
         seances = new ArrayList<>();
     }
 }

@@ -1,6 +1,6 @@
-package com.Cinema.repo;
+package com.cinema.repo;
 
-import com.Cinema.models.Ticket;
+import com.cinema.models.Ticket;
 import org.springframework.data.repository.CrudRepository;
 
 public interface TicketRepository extends CrudRepository<Ticket, Integer> {

@@ -1,13 +1,11 @@
-package com.Cinema.controllers;
+package com.cinema.controllers;
 
-import com.Cinema.models.Hall;
-import com.Cinema.models.Movie;
-import com.Cinema.models.Seance;
-import com.Cinema.models.Ticket;
-import com.Cinema.repo.HallRepository;
-import com.Cinema.repo.MovieRepository;
-import com.Cinema.repo.SeanceRepository;
-import com.Cinema.utils.HibernateSessionFactoryUtil;
+import com.cinema.models.Hall;
+import com.cinema.models.Movie;
+import com.cinema.models.Seance;
+import com.cinema.repo.HallRepository;
+import com.cinema.repo.MovieRepository;
+import com.cinema.repo.SeanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +23,9 @@ public class SeanceController {
     private MovieRepository movieRepository;
     @Autowired
     private HallRepository hallRepository;
-//    private SeanceService seanceService = new SeanceService();
 
     @GetMapping("/seance")
     public String seance(Model model){
-     //   Iterable<Seance> seances = seanceService.findAllSeance();
         Iterable<Seance> seances = seanceRepository.findAll();
         model.addAttribute("seances", seances);
         return "seance-main";

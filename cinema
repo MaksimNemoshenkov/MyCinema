@@ -15,3 +15,4 @@
 что твой слой данных сохраняет в базу данные (начни с сеансов)
 
 spring.jpa.hibernate.ddl-auto=create-drop
+port windows 5432

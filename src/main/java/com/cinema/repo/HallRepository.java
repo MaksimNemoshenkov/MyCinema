@@ -1,6 +1,6 @@
-package com.Cinema.repo;
+package com.cinema.repo;
 
-import com.Cinema.models.Hall;
+import com.cinema.models.Hall;
 import org.springframework.data.repository.CrudRepository;
 
 public interface HallRepository extends CrudRepository<Hall, Integer> {

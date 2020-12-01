@@ -8,20 +8,18 @@
 </head>
 <body>
 <header th:insert="blocks/header.html :: header"></header>
-
 <div class="container mt-5">
+     <h1>Seance</h1>
     <div th:each="el : ${seance}" class="alert alert-into mt-2">
-        <h1 th:text="${el.seance}"/>
         <p><b> Date: </b> <span th:text="${el.date}"/></p>
         <p><span th:text="${el.hall}"/> </p>
-        <p><span th:text="${el.film}"/> </p>
+        <p><span th:text="${el.movie}"/> </p>
         <a th:href="'/seance/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
         <form th:action="'/seance/' + ${el.id} + '/remove'" method="post">
             <button class="btn btn-warning" type="submit">Remove</button>
         </form>
     </div>
 </div>
-
 <div th:insert="blocks/footer.html :: footer"></div>
 </body>
 </html>
