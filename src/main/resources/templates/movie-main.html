@@ -12,7 +12,7 @@
     <h1>Movie of cinema</h1>
     <div th:each="el : ${movies}" class="alert alert-into mt-5">
         <h3 th:text="${el.name}"/>
-            <p><b>Rating:</b> <span th:text="${el.rating}"/></p>
+        <p><b>Rating:</b> <span th:text="${el.rating}"/></p>
         <a th:href="'/movie/' + ${el.id}" class="btn btn-warning">details</a>
     </div>
 </div>
