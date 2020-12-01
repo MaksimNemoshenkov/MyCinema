@@ -36,11 +36,11 @@ public class SeanceController {
     }
 
     @PostMapping("/seance/add")
-    public String seancePostAdd (@RequestParam String date, @RequestParam int movie_id, @RequestParam int hall_id, Model model){
+    public String seancePostAdd (@RequestParam String date, @RequestParam int movieId, @RequestParam int hallId, Model model){
         Seance seance = new Seance(date);
-        Hall hall = hallRepository.findById(hall_id).orElseThrow();
+        Hall hall = hallRepository.findById(hallId).orElseThrow();
         seance.setHall(hall);
-        Movie movie = movieRepository.findById(movie_id).orElseThrow();
+        Movie movie = movieRepository.findById(movieId).orElseThrow();
         seance.setMovie(movie);
         seanceRepository.save(seance);
         return "redirect:/seance";
@@ -62,12 +62,12 @@ public class SeanceController {
         return"seance-edit";
     }
     @PostMapping("/seance/{id}/edit")
-    public String cinemaSeanceUpdate(@PathVariable(value = "id") int id, @RequestParam String date, @RequestParam int movie_id, @RequestParam int hall_id, Model model){
+    public String cinemaSeanceUpdate(@PathVariable(value = "id") int id, @RequestParam String date, @RequestParam int movieId, @RequestParam int hallId, Model model){
         Seance seance = seanceRepository.findById(id).orElseThrow();
         seance.setDate(date);
-        Hall hall = hallRepository.findById(hall_id).orElseThrow();
+        Hall hall = hallRepository.findById(hallId).orElseThrow();
         seance.setHall(hall);
-        Movie movie = movieRepository.findById(movie_id).orElseThrow();
+        Movie movie = movieRepository.findById(movieId).orElseThrow();
         seance.setMovie(movie);
         seanceRepository.save(seance);
         return"redirect:/seance";

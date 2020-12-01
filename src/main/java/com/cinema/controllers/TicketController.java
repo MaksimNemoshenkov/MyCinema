@@ -31,8 +31,8 @@ public class TicketController {
     }
 
     @PostMapping("/ticket/add")
-    public String cinemaTicketAdd(@RequestParam int place, @RequestParam int seance_id, Model model){
-        Seance seance = seanceRepository.findById(seance_id).orElseThrow();
+    public String cinemaTicketAdd(@RequestParam int place, @RequestParam int seanceId, Model model){
+        Seance seance = seanceRepository.findById(seanceId).orElseThrow();
         Ticket ticket = new Ticket(place);
         ticket.setSeance(seance);
         ticketRepository.save(ticket);
@@ -58,10 +58,10 @@ public class TicketController {
     }
 
     @PostMapping("/ticket/{id}/edit")
-    public String cinemaTicketUpdate(@PathVariable(value = "id") int id, @RequestParam int place, @RequestParam int seance_id, Model model){
+    public String cinemaTicketUpdate(@PathVariable(value = "id") int id, @RequestParam int place, @RequestParam int seanceId, Model model){
         Ticket ticket = ticketRepository.findById(id).orElseThrow();
         ticket.setPlace(place);
-        ticket.setSeance(seanceRepository.findById(seance_id).orElseThrow());
+        ticket.setSeance(seanceRepository.findById(seanceId).orElseThrow());
         ticketRepository.save(ticket);
         return"redirect:/tickets";
     }
