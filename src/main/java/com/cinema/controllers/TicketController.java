@@ -58,10 +58,10 @@ public class TicketController {
     }
 
     @PostMapping("/ticket/{id}/edit")
-    public String cinemaTicketUpdate(@PathVariable(value = "id") int id, @RequestParam int place, Model model){
+    public String cinemaTicketUpdate(@PathVariable(value = "id") int id, @RequestParam int place, @RequestParam int seance_id, Model model){
         Ticket ticket = ticketRepository.findById(id).orElseThrow();
         ticket.setPlace(place);
-        ticket.setSeance(new Seance());
+        ticket.setSeance(seanceRepository.findById(seance_id).orElseThrow());
         ticketRepository.save(ticket);
         return"redirect:/tickets";
     }
