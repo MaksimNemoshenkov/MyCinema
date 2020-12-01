@@ -14,7 +14,7 @@
     <div th:each="el : ${ticket}" class="alert alert-into mt-5">
         <h3 th:text="${el.seance}"/>
         <h3 th:number="${el.place}"/>
-        <a th:href="'/tickets/' + ${el.id}" class="btn btn-warning">detail</a>
+        <a th:href="'/ticket/' + ${el.id}" class="btn btn-warning">detail</a>
     </div>
 </div>
 
