@@ -10,7 +10,7 @@
 <header th:insert="blocks/header.html :: header"></header>
 <div class="container mt-5">
      <h1>Seance</h1>
-    <div th:each="el : ${seance}" class="alert alert-into mt-2">fix
+    <div th:each="el : ${seance}" class="alert alert-into mt-2">
         <p><b> Date: </b> <span th:text="${el.date}"/></p>
         <p><span th:text="${el.hall}"/> </p>
         <p><span th:text="${el.movie}"/> </p>

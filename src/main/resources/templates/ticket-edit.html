@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit seance</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
+<header th:insert="blocks/header.html :: header"></header>
 
+<div class="container mt-5 mb-5">
+    <h1>Ticket edit</h1>
+    <div th:each="el:${ticket}">
+        <form method="post">
+            <input type="number" th:value="${el.place}" name="place" placeholder="Please enter a place" class="form-control"><br>
+            <input type="number" th:value="${el.seance_id}" name="seance_id" placeholder="enter seance id" class="form-control"><br>
+            <button type="submit" class="btn btn-success">Edit</button>
+        </form>
+    </div>
+</div>
+
+<div th:insert="blocks/footer.html :: footer"></div>
 </body>
 </html>
