@@ -17,7 +17,7 @@ Vue.component('movie-form', {
         '</div>',
     methods: {
         save: function() {
-            var message () { name:this.name; rating: this.rating };
+            const movie = {name: this.name, rating: this.rating};
             movieApi.save({}, movie).then(result =>
                 result.json().then(data => {
                     this.movies.push(data);
@@ -41,7 +41,7 @@ Vue.component('movies-list', {
  props: ['movies'],
  template:
          '<div>'+
-            '<movie-form :movies="movies"'+
+            '<movie-form :movies="movies"/>'+
             '<movie-row v-for="movie in movies" :key="movie.id" :movie="movie"/>'+
          '</div>',
  created: function(){
@@ -59,7 +59,6 @@ var app = new Vue({
 });
 
 /*
-
 function getIndex(list, id){
     for (var i = 0; i<list.length; i++ ){
         if (list[i].id === id){

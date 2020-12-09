@@ -24,17 +24,17 @@ Vue.component('hall-form', {
         }
     },
     template:
-        '<div>' +
-            '<input type="text" placeholder="Hall name" v-model="name"/>' +
-            '<input type = "button" value= "Save" @click="save"/>' +
+        '<div class="input-group mb-3">' +
+            '<input type="text" class="form-control" placeholder="Hall name" aria-label="Hall name" v-model="name" @keyup.enter="save" aria-describedby="button-addon2"/>' +
+            '<button type = "button" @click="save" class="btn btn-outline-secondary" id="button-addon2"> Save </button>' +
         '</div>',
     methods: {
        save: function(){
-            var hall = { name: this.name };
-            if(this.id) {
+           const hall = {name: this.name};
+           if(this.id) {
                 hallApi.update({id: this.id}, hall).then(result =>
                     result.json().then(data => {
-                        var index = getIndex(this.halls, data.id);
+                        const index = getIndex(this.halls, data.id);
                         this.halls.splice(index, 1, data);
                         this.name = ''
                         this.id = ''
@@ -55,11 +55,11 @@ Vue.component('hall-form', {
 Vue.component('hall-row', {
     props: ['hall', 'editMethod', 'halls'],
     template:
-        '<div>' +
+        '<div class="container mt-3">' +
             '<i>({{ hall.id }})</i>{{ hall.name }}' +
             '<span style="position: absolute; right: 0;  ">' +
-                '<input type="button" value="edit" @click="edit"/>' +
-                '<input type="button" value="X" @click="del"/>' +
+                '<button type = "button" @click="edit" class="btn btn-outline-secondary" > Edit </button>' +
+                '<button type = "button" @click="del" class="btn btn-outline-secondary" > X </button>' +
             '</span>' +
         '</div>',
         methods: {
@@ -86,7 +86,7 @@ Vue.component('halls-list', {
     }
   },
   template:
-      '<div style="position: relative; width: 300px;">' +
+      '<div style="position: relative; width: 350px;">' +
           '<hall-form :halls="halls" :hallAttr="hall"/>' +
           '<hall-row v-for="hall in halls" :key="hall.id" :hall="hall" ' +
           ':editMethod="editMethod" :halls="halls"/>' +

@@ -13,19 +13,20 @@
 </head>
 <body>
 <header th:insert="blocks/header.html :: header"></header>
-<div class="container mt-5">
+<!--<div class="container mt-5">
     <h1>Halls of cinema</h1>
     <div th:each="el : ${halls}" class="alert alert-into mt-5">
         <h3 th:text="${el.name}"/>
         <a th:href="'/halls/' + ${el.id}" class="btn btn-warning">detail</a>
     </div>
-</div>
+</div>-->
+
 <div class="container mt-5">
-    <h1>Hall</h1>
+    <h1>Halls</h1>
     <div id="app"></div>
     <script src="js/hall.js"></script>
 </div>
 
-<div th:insert="blocks/footer.html :: footer"></div>
+<div th:insert="blocks/footer.html :: footer" ></div>
 </body>
 </html>

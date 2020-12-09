@@ -39,7 +39,9 @@ public class MovieRestController {
             @PathVariable("id") Movie movieFromDB,
             @RequestBody Movie movie
     ){
-        BeanUtils.copyProperties(movie, movieFromDB, "id");
+      //  BeanUtils.copyProperties(movie, movieFromDB, "id");
+        movieFromDB.setName(movie.getName());
+        movieFromDB.setRating(movie.getRating());
         return movieRepository.save(movieFromDB);
     }
 
