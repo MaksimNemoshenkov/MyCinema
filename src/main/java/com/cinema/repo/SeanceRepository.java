@@ -1,7 +1,7 @@
 package com.cinema.repo;
 
 import com.cinema.models.Seance;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SeanceRepository extends CrudRepository<Seance, Integer> {
+public interface SeanceRepository extends JpaRepository<Seance, Long> {
 }

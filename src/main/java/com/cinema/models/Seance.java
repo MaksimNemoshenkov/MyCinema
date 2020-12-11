@@ -16,7 +16,7 @@ public class Seance {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)

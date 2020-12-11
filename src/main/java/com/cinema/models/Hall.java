@@ -17,7 +17,7 @@ import java.util.List;
 public class Hall {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Setter
     private String name;
     @Setter

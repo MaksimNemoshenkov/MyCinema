@@ -13,8 +13,8 @@
     <div th:each="el:${seance}">
         <form method="post">
             <input type="text" th:value="${el.date}" name="date" placeholder="Please enter a date" class="form-control"><br>
-            <input type="number" th:value="${el.movie_id}" name="movie_id" placeholder="Please a movie id" class="form-control"><br>
-            <input type="number" th:value="${el.hall_id}" name="hall_id" placeholder="Please a hall id" class="form-control"><br>
+            <input type="number" th:value="${el.movie_id}" name="movieId" placeholder="Please a movie id" class="form-control"><br>
+            <input type="number" th:value="${el.hall_id}" name="hallId" placeholder="Please a hall id" class="form-control"><br>
             <button type="submit" class="btn btn-success">Edit</button>
         </form>
     </div>

@@ -1,5 +1,4 @@
-
-var movieApi = Vue.resource('/mov{/id}');
+const movieApi = Vue.resource('/mov{/id}');
 
 Vue.component('movie-form', {
     props: ['movies'],
@@ -52,10 +51,10 @@ Vue.component('movies-list', {
  }
 });
 
-var app = new Vue({
+const app = new Vue({
     el: '#app',
     template: '<movies-list :movies="movies"/>',
-    data: { movies: [] }
+    data: {movies: []}
 });
 
 /*

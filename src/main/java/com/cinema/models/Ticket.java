@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Setter
     @ManyToOne(fetch = FetchType.EAGER)

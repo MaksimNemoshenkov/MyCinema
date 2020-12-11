@@ -1,11 +1,6 @@
 package com.cinema.controllers;
 
-import com.cinema.models.Hall;
-import com.cinema.models.Movie;
-import com.cinema.models.Seance;
-import com.cinema.repo.HallRepository;
-import com.cinema.repo.MovieRepository;
-import com.cinema.repo.SeanceRepository;
+import com.cinema.services.SeanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,66 +11,51 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SeanceController {
-
+    private final SeanceService seanceService;
     @Autowired
-    private SeanceRepository seanceRepository;
-    @Autowired
-    private MovieRepository movieRepository;
-    @Autowired
-    private HallRepository hallRepository;
+    public SeanceController(SeanceService seanceService) {
+        this.seanceService = seanceService;
+    }
 
     @GetMapping("/seance")
     public String seance(Model model){
-        Iterable<Seance> seances = seanceRepository.findAll();
-        model.addAttribute("seances", seances);
+        model.addAttribute("seances", seanceService.findAll());
         return "seance-main";
     }
     @GetMapping("/seance/add")
     public String seanceAdd(Model model){
         return "seance-add";
     }
-
     @PostMapping("/seance/add")
-    public String seancePostAdd (@RequestParam String date, @RequestParam int movie_id, @RequestParam int hall_id, Model model){
-        Seance seance = new Seance(date);
-        Hall hall = hallRepository.findById(hall_id).orElseThrow();
-        seance.setHall(hall);
-        Movie movie = movieRepository.findById(movie_id).orElseThrow();
-        seance.setMovie(movie);
-        seanceRepository.save(seance);
+    public String seancePostAdd (@RequestParam String date, @RequestParam long movieId, @RequestParam long hallId, Model model){
+        seanceService.save(date, hallId, movieId);
         return "redirect:/seance";
     }
     @GetMapping("/seance/{id}")
-    public String seanceDetails(@PathVariable(value = "id") int id, Model model){
-        if(!seanceRepository.existsById(id)){
+    public String seanceDetails(@PathVariable(value = "id") long id, Model model){
+        if(!seanceService.existsById(id)){
             return "redirect:/seance";
         }
-        model.addAttribute("seance", seanceRepository.findById(id).orElseThrow());
+        model.addAttribute("seance", seanceService.getOne(id));
         return "seance-detail";
     }
     @GetMapping("/seance/{id}/edit")
-    public String seanceEdit(@PathVariable(value = "id") int id, Model model){
-        if(!seanceRepository.existsById(id)){
+    public String seanceEdit(@PathVariable(value = "id") long id, Model model){
+        if(!seanceService.existsById(id)){
             return "redirect:/seance";
         }
-        model.addAttribute("seance", seanceRepository.findById(id).orElseThrow());
+        model.addAttribute("seance", seanceService.getOne(id));
         return"seance-edit";
     }
     @PostMapping("/seance/{id}/edit")
-    public String cinemaSeanceUpdate(@PathVariable(value = "id") int id, @RequestParam String date, @RequestParam int movie_id, @RequestParam int hall_id, Model model){
-        Seance seance = seanceRepository.findById(id).orElseThrow();
-        seance.setDate(date);
-        Hall hall = hallRepository.findById(hall_id).orElseThrow();
-        seance.setHall(hall);
-        Movie movie = movieRepository.findById(movie_id).orElseThrow();
-        seance.setMovie(movie);
-        seanceRepository.save(seance);
+    public String cinemaSeanceUpdate(@PathVariable(value = "id") long id, @RequestParam String date, @RequestParam long movieId, @RequestParam long hallId, Model model){
+        seanceService.update(id, date, hallId, movieId);
         return"redirect:/seance";
     }
 
     @PostMapping("/seance/{id}/remove")
-    public String cinemaSeanceDelete(@PathVariable(value = "id") int id, Model model){
-        seanceRepository.delete(seanceRepository.findById(id).orElseThrow());
+    public String cinemaSeanceDelete(@PathVariable(value = "id") long id, Model model){
+        seanceService.deleteById(id);
         return"redirect:/seance";
     }
 }

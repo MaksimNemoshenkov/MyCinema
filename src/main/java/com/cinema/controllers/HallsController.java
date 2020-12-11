@@ -1,6 +1,7 @@
 package com.cinema.controllers;
 
 import com.cinema.models.Hall;
+import com.cinema.services.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,68 +9,55 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.cinema.repo.HallRepository;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 @Controller
 public class HallsController {
 
+    private final HallService hallService;
     @Autowired
-    private HallRepository hallRepository;
-
-
+    public HallsController(HallService hallService) {
+        this.hallService = hallService;
+    }
 
     @GetMapping("/halls")
     public String halls(Model model){
-       Iterable<Hall> halls = hallRepository.findAll();
-       model.addAttribute("halls", halls);
+       model.addAttribute("halls", hallService.findAll());
         return "halls-main";
     }
-
     @GetMapping("/halls/add")
     public String hallsAdd(Model model){
         return "hall-add";
     }
-
     @PostMapping("/halls/add")
     public String cinemaHallsAdd(@RequestParam String title, Model model){
         Hall hall = new Hall(title);
-        hallRepository.save(hall);
+        hallService.save(hall);
         return"redirect:/halls";
     }
     @GetMapping("/halls/{id}")
-    public String hallDetails(@PathVariable(value = "id") int id, Model model){
-        if(!hallRepository.existsById(id)){
+    public String hallDetails(@PathVariable(value = "id") long id, Model model){
+        if(!hallService.existsById(id)){
             return "redirect:/halls";
         }
-        Optional<Hall> hall = hallRepository.findById(id);
-        ArrayList<Hall> res =  new ArrayList<>();
-        hall.ifPresent(res::add);
-        model.addAttribute("hall", res);
+        model.addAttribute("hall", hallService.getOne(id));
         return"hall-detail";
     }
     @GetMapping("/halls/{id}/edit")
-    public String hallEdit(@PathVariable(value = "id") int id, Model model){
-        if(!hallRepository.existsById(id)){
+    public String hallEdit(@PathVariable(value = "id") long id, Model model){
+        if(!hallService.existsById(id)){
             return "redirect:/halls";
         }
-        model.addAttribute("hall", hallRepository.findById(id).orElseThrow());
+        model.addAttribute("hall", hallService.getOne(id));
         return"hall-edit";
     }
     @PostMapping("/halls/{id}/edit")
-    public String cinemaHallUpdate(@PathVariable(value = "id") int id, @RequestParam String name, Model model){
-        Hall hall = hallRepository.findById(id).orElseThrow();
-        hall.setName(name);
-        hallRepository.save(hall);
+    public String cinemaHallUpdate(@PathVariable(value = "id") long id, @RequestParam String name, Model model){
+        hallService.update(id, name);
         return"redirect:/halls";
     }
-
     @PostMapping("/halls/{id}/remove")
-    public String cinemaHallDelete(@PathVariable(value = "id") int id, Model model){
-        Hall hall = hallRepository.findById(id).orElseThrow();
-        hallRepository.delete(hall);
+    public String cinemaHallDelete(@PathVariable(value = "id") long id, Model model){
+        hallService.deleteById(id);
         return"redirect:/halls";
     }
 }

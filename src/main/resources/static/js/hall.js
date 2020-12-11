@@ -7,7 +7,7 @@ function getIndex(list, id){
     return -1;
 }
 
-var hallApi = Vue.resource('/cinema-hall{/id}');
+const hallApi = Vue.resource('/cinema-hall{/id}');
 
 Vue.component('hall-form', {
     props: ['halls','hallAttr'],
@@ -105,10 +105,10 @@ Vue.component('halls-list', {
     }
 });
 
-var app = new Vue({
-  el: '#app',
-  template: '<halls-list :halls="halls" />',
-  data: {
-    halls: []
-  }
+const app = new Vue({
+    el: '#app',
+    template: '<halls-list :halls="halls" />',
+    data: {
+        halls: []
+    }
 });
