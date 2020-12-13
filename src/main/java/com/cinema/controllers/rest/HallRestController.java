@@ -1,27 +1,27 @@
 package com.cinema.controllers.rest;
 
 import com.cinema.models.Hall;
-import com.cinema.services.HallService;
+import com.cinema.services.HallServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("cinema-hall")
 public class HallRestController {
-    private final HallService hallService;
+    private final HallServiceImpl hallService;
     @Autowired
-    public HallRestController(HallService hallService) {
+    public HallRestController(HallServiceImpl hallService) {
         this.hallService = hallService;
     }
     @GetMapping
     public List<Hall> list(){
         return hallService.findAll();
     }
+    //@PathVariable(name = "id") int id
     @GetMapping("{id}")
-    public Hall getOne(@PathVariable("id") Hall hall) {
-        return hall;
+    public Hall getOne(@PathVariable(name = "id")Long id, Hall hall) {
+        return hallService.getOne(id);
     }
     @PostMapping
     public Hall create(@RequestBody Hall hall){

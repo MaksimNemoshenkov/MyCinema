@@ -1,7 +1,7 @@
 package com.cinema.controllers.rest;
 
 import com.cinema.models.Ticket;
-import com.cinema.services.TicketService;
+import com.cinema.services.TicketServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import java.util.List;
 @RestController
 @RequestMapping("cinema-ticket")
 public class TicketRestController {
-    private final TicketService ticketService;
+    private final TicketServiceImpl ticketService;
 
     @Autowired
-    public TicketRestController(TicketService ticketService) {
+    public TicketRestController(TicketServiceImpl ticketService) {
         this.ticketService = ticketService;
     }
     @GetMapping

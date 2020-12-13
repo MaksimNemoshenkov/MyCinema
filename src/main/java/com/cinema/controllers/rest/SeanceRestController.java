@@ -1,7 +1,7 @@
 package com.cinema.controllers.rest;
 
 import com.cinema.models.Seance;
-import com.cinema.services.SeanceService;
+import com.cinema.services.SeanceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("cinema-seance")
 public class SeanceRestController {
-    private final SeanceService seanceService;
+    private final SeanceServiceImpl seanceService;
     @Autowired
-    public SeanceRestController(SeanceService seanceService) {
+    public SeanceRestController(SeanceServiceImpl seanceService) {
         this.seanceService = seanceService;
     }
     @GetMapping

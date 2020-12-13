@@ -1,7 +1,7 @@
 package com.cinema.controllers.rest;
 
 import com.cinema.models.Movie;
-import com.cinema.services.MovieService;
+import com.cinema.services.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +11,10 @@ import java.util.List;
 @RequestMapping("mov")
 public class MovieRestController {
 
-    private final MovieService movieService;
+    private final MovieServiceImpl movieService;
 
     @Autowired
-    public MovieRestController(MovieService movieService) {
+    public MovieRestController(MovieServiceImpl movieService) {
         this.movieService = movieService;
     }
 

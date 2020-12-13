@@ -1,7 +1,7 @@
-package com.cinema.controllers;
+package com.cinema.controllers.simple;
 
 import com.cinema.models.Hall;
-import com.cinema.services.HallService;
+import com.cinema.services.HallServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HallsController {
 
-    private final HallService hallService;
+    private final HallServiceImpl hallService;
     @Autowired
-    public HallsController(HallService hallService) {
+    public HallsController(HallServiceImpl hallService) {
         this.hallService = hallService;
     }
 
@@ -30,23 +30,22 @@ public class HallsController {
     }
     @PostMapping("/halls/add")
     public String cinemaHallsAdd(@RequestParam String title, Model model){
-        Hall hall = new Hall(title);
-        hallService.save(hall);
+        hallService.save(new Hall(title));
         return"redirect:/halls";
     }
     @GetMapping("/halls/{id}")
     public String hallDetails(@PathVariable(value = "id") long id, Model model){
-        if(!hallService.existsById(id)){
+/*        if(!hallService.existsById(id)){
             return "redirect:/halls";
-        }
+        }*/
         model.addAttribute("hall", hallService.getOne(id));
         return"hall-detail";
     }
     @GetMapping("/halls/{id}/edit")
     public String hallEdit(@PathVariable(value = "id") long id, Model model){
-        if(!hallService.existsById(id)){
+/*        if(!hallService.existsById(id)){
             return "redirect:/halls";
-        }
+        }*/
         model.addAttribute("hall", hallService.getOne(id));
         return"hall-edit";
     }

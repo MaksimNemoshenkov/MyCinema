@@ -1,6 +1,6 @@
-package com.cinema.controllers;
+package com.cinema.controllers.simple;
 
-import com.cinema.services.SeanceService;
+import com.cinema.services.SeanceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SeanceController {
-    private final SeanceService seanceService;
+    private final SeanceServiceImpl seanceService;
     @Autowired
-    public SeanceController(SeanceService seanceService) {
+    public SeanceController(SeanceServiceImpl seanceService) {
         this.seanceService = seanceService;
     }
 
@@ -33,17 +33,17 @@ public class SeanceController {
     }
     @GetMapping("/seance/{id}")
     public String seanceDetails(@PathVariable(value = "id") long id, Model model){
-        if(!seanceService.existsById(id)){
+/*        if(!seanceService.existsById(id)){
             return "redirect:/seance";
-        }
+        }*/
         model.addAttribute("seance", seanceService.getOne(id));
         return "seance-detail";
     }
     @GetMapping("/seance/{id}/edit")
     public String seanceEdit(@PathVariable(value = "id") long id, Model model){
-        if(!seanceService.existsById(id)){
+/*        if(!seanceService.existsById(id)){
             return "redirect:/seance";
-        }
+        }*/
         model.addAttribute("seance", seanceService.getOne(id));
         return"seance-edit";
     }
