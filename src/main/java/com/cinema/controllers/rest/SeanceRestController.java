@@ -10,9 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("cinema-seance")
 public class SeanceRestController {
-    private final SeanceServiceImpl seanceService;
+    private final SeanceService seanceService;
     @Autowired
-    public SeanceRestController(SeanceServiceImpl seanceService) {
+    public SeanceRestController(SeanceService seanceService) {
         this.seanceService = seanceService;
     }
     @GetMapping

@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Table(name = "tickets")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Setter
     @ManyToOne(fetch = FetchType.EAGER)

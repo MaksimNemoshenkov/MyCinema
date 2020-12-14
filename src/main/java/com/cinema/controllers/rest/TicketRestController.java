@@ -10,10 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("cinema-ticket")
 public class TicketRestController {
-    private final TicketServiceImpl ticketService;
-
+    private final TicketService ticketService;
     @Autowired
-    public TicketRestController(TicketServiceImpl ticketService) {
+    public TicketRestController(TicketService ticketService) {
         this.ticketService = ticketService;
     }
     @GetMapping

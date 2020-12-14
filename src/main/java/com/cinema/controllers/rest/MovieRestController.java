@@ -11,10 +11,10 @@ import java.util.List;
 @RequestMapping("mov")
 public class MovieRestController {
 
-    private final MovieServiceImpl movieService;
+    private final MovieService movieService;
 
     @Autowired
-    public MovieRestController(MovieServiceImpl movieService) {
+    public MovieRestController(MovieService movieService) {
         this.movieService = movieService;
     }
 

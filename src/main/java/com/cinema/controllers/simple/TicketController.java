@@ -1,6 +1,6 @@
 package com.cinema.controllers.simple;
 
-import com.cinema.services.TicketServiceImpl;
+import com.cinema.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TicketController {
-    private final TicketServiceImpl ticketService;
+    private final TicketService ticketService;
     @Autowired
-    public TicketController(TicketServiceImpl ticketService) {
+    public TicketController(TicketService ticketService) {
         this.ticketService = ticketService;
     }
     @GetMapping("/tickets")
@@ -30,7 +30,6 @@ public class TicketController {
         ticketService.save(place, seanceId);
         return"redirect:/tickets";
     }
-
     @GetMapping("/ticket/{id}")
     public String ticketDetails(@PathVariable(value = "id") long id, Model model){
         if(!ticketService.existsById(id)){
@@ -39,7 +38,6 @@ public class TicketController {
         model.addAttribute("ticket", ticketService.getOne(id));
         return"ticket-detail";
     }
-
     @GetMapping("/ticket/{id}/edit")
     public String ticketEdit(@PathVariable(value = "id") long id, Model model){
         if(!ticketService.existsById(id)){
@@ -48,13 +46,11 @@ public class TicketController {
         model.addAttribute("ticket", ticketService.getOne(id));
         return"ticket-edit";
     }
-
     @PostMapping("/ticket/{id}/edit")
     public String cinemaTicketUpdate(@PathVariable(value = "id") long id, @RequestParam int place, @RequestParam long seanceId, Model model){
         ticketService.update(id, place, seanceId);
         return"redirect:/tickets";
     }
-
     @PostMapping("/ticket/{id}/remove")
     public String cinemaTicketDelete(@PathVariable(value = "id") long id, Model model){
         ticketService.deleteById(id);

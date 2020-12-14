@@ -1,5 +1,6 @@
 package com.cinema.controllers.simple;
 
+import com.cinema.services.MovieService;
 import com.cinema.services.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MovieController {
-    private final MovieServiceImpl movieService;
+    private final MovieService movieService;
     @Autowired
-    public MovieController(MovieServiceImpl movieService) {
+    public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
 

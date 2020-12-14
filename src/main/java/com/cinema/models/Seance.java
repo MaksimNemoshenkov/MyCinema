@@ -15,8 +15,8 @@ import java.util.List;
 public class Seance {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Long id;
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)

@@ -4,7 +4,6 @@ import com.cinema.exceptions.NoDataFoundException;
 import com.cinema.exceptions.NotFoundException;
 import com.cinema.models.Seance;
 import com.cinema.models.Ticket;
-import com.cinema.repo.SeanceRepository;
 import com.cinema.repo.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,9 +13,9 @@ import java.util.List;
 @Component
 public class TicketServiceImpl implements TicketService{
     private final TicketRepository ticketRepository;
-    private final SeanceRepository seanceService;
+    private final SeanceService seanceService;
     @Autowired
-    public TicketServiceImpl(TicketRepository ticketRepository, SeanceRepository seanceService) {
+    public TicketServiceImpl(TicketRepository ticketRepository, SeanceService seanceService) {
         this.ticketRepository = ticketRepository;
         this.seanceService = seanceService;
     }

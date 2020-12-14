@@ -9,9 +9,9 @@ import java.util.List;
 @RestController
 @RequestMapping("cinema-hall")
 public class HallRestController {
-    private final HallServiceImpl hallService;
+    private final HallService hallService;
     @Autowired
-    public HallRestController(HallServiceImpl hallService) {
+    public HallRestController(HallService hallService) {
         this.hallService = hallService;
     }
     @GetMapping

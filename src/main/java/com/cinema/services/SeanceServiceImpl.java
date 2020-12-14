@@ -14,10 +14,10 @@ import java.util.List;
 @Component
 public class SeanceServiceImpl implements SeanceService{
     private final SeanceRepository seanceRepository;
-    private final MovieServiceImpl movieService;
-    private final HallServiceImpl hallService;
+    private final MovieService movieService;
+    private final HallService hallService;
     @Autowired
-    public SeanceServiceImpl(SeanceRepository seanceRepository, MovieServiceImpl movieService, HallServiceImpl hallService) {
+    public SeanceServiceImpl(SeanceRepository seanceRepository, MovieService movieService, HallService hallService) {
         this.seanceRepository = seanceRepository;
         this.movieService = movieService;
         this.hallService = hallService;

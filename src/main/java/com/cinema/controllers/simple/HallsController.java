@@ -1,7 +1,8 @@
 package com.cinema.controllers.simple;
 
 import com.cinema.models.Hall;
-import com.cinema.services.HallServiceImpl;
+import com.cinema.services.HallService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HallsController {
 
-    private final HallServiceImpl hallService;
+    private final HallService hallService;
     @Autowired
-    public HallsController(HallServiceImpl hallService) {
+    public HallsController(HallService hallService) {
         this.hallService = hallService;
     }
 
