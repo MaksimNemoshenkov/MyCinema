@@ -13,7 +13,7 @@
     <div th:each="el:${ticket}">
         <form method="post">
             <input type="number" th:value="${el.place}" name="place" placeholder="Please enter a place" class="form-control"><br>
-            <input type="number" th:value="${el.seance}" name="seance_id" placeholder="enter seance id" class="form-control"><br>
+            <input type="number" th:value="${el.seance}" name="seanceId" placeholder="enter seance id" class="form-control"><br>
             <button type="submit" class="btn btn-success">Edit</button>
         </form>
     </div>
