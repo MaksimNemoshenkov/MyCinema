@@ -1,7 +1,7 @@
 package com.cinema.controllers.rest;
 
 import com.cinema.models.Seance;
-import com.cinema.services.SeanceServiceImpl;
+import com.cinema.services.SeanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

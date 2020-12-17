@@ -1,7 +1,7 @@
 package com.cinema.controllers.rest;
 
 import com.cinema.models.Ticket;
-import com.cinema.services.TicketServiceImpl;
+import com.cinema.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

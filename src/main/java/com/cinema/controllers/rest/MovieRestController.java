@@ -1,7 +1,7 @@
 package com.cinema.controllers.rest;
 
 import com.cinema.models.Movie;
-import com.cinema.services.MovieServiceImpl;
+import com.cinema.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +24,8 @@ public class MovieRestController {
     }
 
     @GetMapping("{id}")
-    public Movie getOne(@PathVariable("id") Movie movie){
-        return movie;
+    public Movie getOne(@PathVariable(name = "id")Long id, Movie movie){
+        return movieService.getOne(id);
     }
 
     @PostMapping
