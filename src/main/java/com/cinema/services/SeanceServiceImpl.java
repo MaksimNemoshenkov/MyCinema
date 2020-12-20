@@ -8,10 +8,11 @@ import com.cinema.models.Seance;
 import com.cinema.repo.SeanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class SeanceServiceImpl implements SeanceService{
     private final SeanceRepository seanceRepository;
     private final MovieService movieService;

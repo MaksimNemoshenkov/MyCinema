@@ -6,10 +6,11 @@ import com.cinema.models.Movie;
 import com.cinema.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class MovieServiceImpl implements MovieService{
     private final MovieRepository movieRepository;
     @Autowired

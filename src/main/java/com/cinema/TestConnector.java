@@ -6,7 +6,8 @@ import java.sql.SQLException;
 
 public class TestConnector {
 
-    static final String DB_URL = "jdbc:postgresql://localhost/john";
+    static final String DB_URL = "jdbc:postgresql://localhost:5433/john";
+ //   static final String DB_URL = "jdbc:postgresql://localhost/john";
     static final String USER = "john";
     static final String PASS = "1234";
 

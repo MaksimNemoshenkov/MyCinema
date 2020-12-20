@@ -1,14 +1,14 @@
 package com.cinema.services;
 
-import com.cinema.exceptions.NotFoundException;
 import com.cinema.exceptions.NoDataFoundException;
+import com.cinema.exceptions.NotFoundException;
 import com.cinema.models.Hall;
 import com.cinema.repo.HallRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Component
+@Service
 public class HallServiceImpl implements HallService{
     private final HallRepository hallRepository;
     @Autowired
@@ -28,6 +28,15 @@ public class HallServiceImpl implements HallService{
         existsById(id);
         return hallRepository.getOne(id);
     }
+
+    public boolean addHall(Hall hall) {
+        if (existsById(hall.getId())){
+            return false;
+         }
+        save(hall);
+        return true;
+    }
+
     @Override
     public Hall save(Hall hall){
         return hallRepository.save(hall);
