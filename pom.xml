@@ -9,8 +9,8 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.0</version>
         <relativePath/>
-
     </parent>
+
     <groupId>com.mkyong.hashing</groupId>
     <artifactId>java-project</artifactId>
     <packaging>jar</packaging>
@@ -111,8 +111,27 @@
         </dependency>
 
 
-    </dependencies>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
+
+    </dependencies>
     <build>
         <pluginManagement>
             <plugins>
