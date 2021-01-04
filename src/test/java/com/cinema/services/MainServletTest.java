@@ -15,7 +15,7 @@ public class MainServletTest {
 
     @Test
     public void doGetTest(){
-        Mockito.verify()
+
     }
 
 }

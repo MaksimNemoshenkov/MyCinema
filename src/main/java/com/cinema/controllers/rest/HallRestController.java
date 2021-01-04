@@ -2,8 +2,6 @@ package com.cinema.controllers.rest;
 
 import com.cinema.models.Hall;
 import com.cinema.services.HallService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,7 +10,6 @@ import java.util.List;
 @RequestMapping("cinema-hall")
 public class HallRestController {
 
-    Logger logger = LoggerFactory.getLogger(HallRestController.class);
 
     private final HallService hallService;
     @Autowired
@@ -23,7 +20,6 @@ public class HallRestController {
     public List<Hall> list(){
         return hallService.findAll();
     }
-    //@PathVariable(name = "id") int id
     @GetMapping("{id}")
     public Hall getOne(@PathVariable(name = "id")Long id, Hall hall) {
         return hallService.getOne(id);
