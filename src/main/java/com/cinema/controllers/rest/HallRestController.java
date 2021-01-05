@@ -21,7 +21,7 @@ public class HallRestController {
         return hallService.findAll();
     }
     @GetMapping("{id}")
-    public Hall getOne(@PathVariable(name = "id")Long id, Hall hall) {
+    public Hall getOne(@PathVariable(name = "id")Long id) {
         return hallService.getOne(id);
     }
     @PostMapping

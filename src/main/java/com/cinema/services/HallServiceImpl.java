@@ -28,13 +28,10 @@ public class HallServiceImpl implements HallService{
         existsById(id);
         return hallRepository.getOne(id);
     }
-
-    public boolean addHall(Hall hall) {
-        if (existsById(hall.getId())){
-            return false;
-         }
+    public Hall addHall(Hall hall) {
+        existsById(hall.getId());
         save(hall);
-        return true;
+        return hall;
     }
 
     @Override
