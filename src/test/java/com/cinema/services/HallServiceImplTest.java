@@ -1,22 +1,29 @@
 package com.cinema.services;
 
-import com.cinema.models.Hall;
-import org.junit.Assert;
+import com.cinema.controllers.rest.HallRestController;
 import org.junit.jupiter.api.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HallServiceImplTest {
+    @LocalServerPort
+    int port;
     @Autowired
-    private HallService hallService;
+    HallRestController hallRestController;
+    @Autowired
+    private TestRestTemplate restTemplate;
+
     @Test
-    void save() {
-        Hall hall = new Hall();
-        Assert.assertTrue(hallService.save(hall)!=null);
+    public void save() {
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/", String.class)).contains("Hello");
     }
 }

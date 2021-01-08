@@ -12,7 +12,10 @@ import java.time.Instant;
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // if you remove line with date, you change nothing.
         response.addDateHeader("Date", Instant.now().toEpochMilli());
+
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<p>Hello World!</p>");

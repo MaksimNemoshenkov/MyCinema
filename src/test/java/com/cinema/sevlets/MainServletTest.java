@@ -1,4 +1,4 @@
-package com.cinema;
+package com.cinema.sevlets;
 
 import com.cinema.config.WebMvcConfig;
 import org.junit.Before;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-public class WebApplicationTest {
+public class MainServletTest {
     @LocalServerPort
     int port;
     @Autowired
@@ -40,7 +40,11 @@ public class WebApplicationTest {
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
     @Test
-    public void dateIsNotNull(){
+    public void containsDate(){
         assertThat(response.getHeaders().toString().contains("Date"));
+    }
+    @Test
+    public void containsGreeting(){
+        assertThat(this.testRestTemplate.getForObject(uri,String.class)).contains("Hello");
     }
 }

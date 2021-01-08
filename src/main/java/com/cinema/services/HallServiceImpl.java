@@ -30,10 +30,8 @@ public class HallServiceImpl implements HallService{
     }
     public Hall addHall(Hall hall) {
         existsById(hall.getId());
-        save(hall);
-        return hall;
+        return save(hall);
     }
-
     @Override
     public Hall save(Hall hall){
         return hallRepository.save(hall);
