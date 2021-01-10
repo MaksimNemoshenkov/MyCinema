@@ -28,9 +28,10 @@ public class HallServiceImpl implements HallService{
         existsById(id);
         return hallRepository.getOne(id);
     }
-    public Hall addHall(Hall hall) {
+    public Long addHall(Hall hall) {
         existsById(hall.getId());
-        return save(hall);
+        save(hall);
+        return hall.getId();
     }
     @Override
     public Hall save(Hall hall){

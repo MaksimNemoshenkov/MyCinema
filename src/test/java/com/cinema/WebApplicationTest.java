@@ -1,7 +1,6 @@
 package com.cinema;
 
 import com.cinema.config.WebMvcConfig;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -27,20 +25,11 @@ public class WebApplicationTest {
     private WebMvcConfig webMvcConfig;
     @Autowired
     private TestRestTemplate testRestTemplate;
-
-    private ResponseEntity<String> response;
-    private URI uri;
-    @Before
-    public void loadResponse() throws URISyntaxException {
-        uri = new URI("http://localhost:" + port + "/my");
-        response = testRestTemplate.getForEntity(uri,String.class);
-    }
     @Test
     public void contextLoads() throws Exception {
+        URI uri = new URI("http://localhost:" + port + "/my");
+        ResponseEntity<String> response = testRestTemplate.getForEntity(uri,String.class);
         assertEquals(HttpStatus.OK,response.getStatusCode());
-    }
-    @Test
-    public void dateIsNotNull(){
         assertThat(response.getHeaders().toString().contains("Date"));
     }
 }
