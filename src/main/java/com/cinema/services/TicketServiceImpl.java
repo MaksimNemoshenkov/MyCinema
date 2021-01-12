@@ -7,10 +7,11 @@ import com.cinema.models.Ticket;
 import com.cinema.repo.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class TicketServiceImpl implements TicketService{
     private final TicketRepository ticketRepository;
     private final SeanceService seanceService;

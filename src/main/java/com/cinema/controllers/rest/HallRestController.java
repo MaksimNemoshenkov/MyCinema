@@ -9,6 +9,8 @@ import java.util.List;
 @RestController
 @RequestMapping("cinema-hall")
 public class HallRestController {
+
+
     private final HallService hallService;
     @Autowired
     public HallRestController(HallService hallService) {
@@ -18,9 +20,8 @@ public class HallRestController {
     public List<Hall> list(){
         return hallService.findAll();
     }
-    //@PathVariable(name = "id") int id
     @GetMapping("{id}")
-    public Hall getOne(@PathVariable(name = "id")Long id, Hall hall) {
+    public Hall getOne(@PathVariable(name = "id")Long id) {
         return hallService.getOne(id);
     }
     @PostMapping
