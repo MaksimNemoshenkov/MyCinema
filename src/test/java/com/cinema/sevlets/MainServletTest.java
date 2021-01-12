@@ -21,8 +21,6 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 public class MainServletTest {
-    @LocalServerPort
-    int port;
     @Autowired
     private WebMvcConfig webMvcConfig;
     @Autowired
@@ -32,7 +30,7 @@ public class MainServletTest {
     private URI uri;
     @Before
     public void loadResponse() throws URISyntaxException {
-        uri = new URI("http://localhost:" + port + "/my");
+        uri = new URI("/my");
         response = testRestTemplate.getForEntity(uri,String.class);
     }
     @Test
