@@ -20,10 +20,8 @@ public class MainController {
         model.addAttribute("title", "Creator by Maxim");
         return "author";
     }
-
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
     }
-
 }
