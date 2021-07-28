@@ -21,4 +21,9 @@ public class MainController {
         return "author";
     }
 
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
 }
