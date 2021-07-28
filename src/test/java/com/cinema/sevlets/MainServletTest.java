@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,7 +29,7 @@ public class MainServletTest {
     private URI uri;
     @Before
     public void loadResponse() throws URISyntaxException {
-        uri = new URI("/my");
+        uri = new URI("/just");
         response = testRestTemplate.getForEntity(uri,String.class);
     }
     @Test
@@ -42,7 +41,7 @@ public class MainServletTest {
         assertThat(response.getHeaders().toString().contains("Date"));
     }
     @Test
-    public void containsGreeting(){
-        assertThat(this.testRestTemplate.getForObject(uri,String.class)).contains("Hello");
+    public void containsMyDate(){
+        assertThat(response.getHeaders().toString().contains("myDate"));
     }
 }
