@@ -39,6 +39,7 @@ public class MainServletTest {
     }
     @Test
     public void containsDate(){
+        response.getHeaders();
         assertThat(response.getHeaders().toString().contains("Date"));
     }
     @Test
